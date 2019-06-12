@@ -46,7 +46,7 @@ function GameObject(att){
   this.dimensions = att.dimensions;
 }
 GameObject.prototype.destroy = function(){
-  console.log(`${this.name} was removed from the game`)
+  console.log(`${att.name} was removed from the game`)
 }
 
 
@@ -57,22 +57,24 @@ function CharacterStats(att){
 }
 CharacterStats.prototype = Object.create(GameObject.prototype)
 CharacterStats.prototype.takeDamage = function () {
-  console.log(`${GameObject.name} took damage`)  
+  console.log(`${this.name} took damage`)  
 }
 
 
 function Humanoid(att){
-  CharacterStats.call(this)
-  GameObject.call(this)
+  CharacterStats.call(this, att)
+  CharacterStats.prototype.takeDamage.call(this, att)
+  GameObject.call(this, att)
   this.team = att.team;
   this.weapons = att.weapons;
   this.language = att.language;
   
 }
 Humanoid.prototype = Object.create(CharacterStats.prototype)
+Humanoid.prototype = Object.create(CharacterStats.prototype.takeDamage)
 Humanoid.prototype = Object.create(GameObject.prototype)
 Humanoid.prototype.greet = function () {
-  console.log(`${GameObject.name} offers a greeting in ${this.language}`)
+  console.log(`${this.name} offers a greeting in ${this.language}`)
 }
 
 
