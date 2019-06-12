@@ -57,16 +57,17 @@ function CharacterStats(att){
 }
 CharacterStats.prototype = Object.create(GameObject.prototype)
 CharacterStats.prototype.takeDamage = function () {
-  console.log(att.name)  
+  console.log(`${GameObject.name} took damage`)  
 }
 
 
 function Humanoid(att){
+  CharacterStats.call(this)
+  GameObject.call(this)
   this.team = att.team;
   this.weapons = att.weapons;
   this.language = att.language;
-  CharacterStats.call(this)
-  GameObject.call(this)
+  
 }
 Humanoid.prototype = Object.create(CharacterStats.prototype)
 Humanoid.prototype = Object.create(GameObject.prototype)
